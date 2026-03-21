@@ -21,9 +21,13 @@ func main() {
 			organize_files_by_type()
 			break
 		case 3:
+			revert_organization()
+			break
+		case 4:
 			break
 		default:
 			fmt.Println("Choose a better option")
+			break
 		}
 	}
 }

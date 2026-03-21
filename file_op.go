@@ -31,13 +31,12 @@ func organize_files_by_type() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	// create map of file types
-	fileTypes := make(map[string]int)
+	fileTypes := make(map[string]int) // created map of file types
 	for _, file := range files {
 		if !file.IsDir() {
 			fileType := strings.Split(file.Name(), ".")[1]
 			if fileTypes[fileType] == 0 {
-				os.Mkdir(fileType, 0750)
+				os.Mkdir(fileType, 0750) // directory created
 			}
 			fileTypes[fileType] += 1
 			os.Rename(file.Name(), fileType+"/"+file.Name())
@@ -45,4 +44,27 @@ func organize_files_by_type() {
 	}
 	fmt.Println("FILES ARE NOW ORGANIZED INTO FOLDERS")
 	dir_scan(false)
+}
+
+func revert_organization() {
+	files, err := os.ReadDir(".")
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, file := range files {
+		if file.IsDir() {
+			dirFiles, err := os.ReadDir(file.Name())
+			if err != nil {
+				log.Fatal(err)
+			}
+			for _, dirFile := range dirFiles {
+				err := os.Rename(file.Name()+"/"+dirFile.Name(), dirFile.Name())
+				if err != nil {
+					log.Fatal(err)
+				}
+			}
+			os.Remove(file.Name())
+		}
+	}
+	// dir_scan(false)
 }
