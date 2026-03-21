@@ -11,8 +11,14 @@ func dir_scan() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	fmt.Println("\n 📄 - FILES, 📂 - FOLDERS")
+	fmt.Println("----------------")
 	for _, file := range files {
-		fmt.Println(file.Name(), file.Type(), file.IsDir())
+		if !file.IsDir() {
+			fmt.Println("📄", file.Name())
+		} else {
+			fmt.Println("📂", file.Name())
+		}
 	}
+	fmt.Println("----------------")
 }
