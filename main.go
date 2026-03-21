@@ -6,17 +6,24 @@ import (
 
 func main() {
 	fmt.Printf("Welcome to helixjoe's file organizer. We provide..\n")
-	fmt.Printf("--------------------------- \n")
-	fmt.Printf(" 1. Directory Scanning \n")
-	fmt.Printf("--------------------------- \n")
-	fmt.Printf("Enter an option : ")
 	var option int
-	fmt.Scan(&option)
-	switch option {
-	case 1:
-		dir_scan()
-	default:
-		fmt.Println("Choose a better option")
+	for option != 3 {
+		fmt.Printf("--------------------------- \n")
+		fmt.Printf(" 1. Directory Scanning \n")
+		fmt.Printf("--------------------------- \n")
+		fmt.Printf("Enter an option : ")
+		fmt.Scan(&option)
+		switch option {
+		case 1:
+			dir_scan(true)
+			break
+		case 2:
+			organize_files_by_type()
+			break
+		case 3:
+			break
+		default:
+			fmt.Println("Choose a better option")
+		}
 	}
-
 }
