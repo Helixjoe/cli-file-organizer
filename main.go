@@ -2,8 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
-	"os"
 )
 
 func main() {
@@ -16,14 +14,7 @@ func main() {
 	fmt.Scan(&option)
 	switch option {
 	case 1:
-		files, err := os.ReadDir(".")
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		for _, file := range files {
-			fmt.Println(file.Name(), file.Type(), file.IsDir())
-		}
+		dir_scan()
 	default:
 		fmt.Println("Choose a better option")
 	}
