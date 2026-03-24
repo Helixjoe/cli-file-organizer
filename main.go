@@ -24,6 +24,9 @@ func main() {
 			revert_organization()
 			break
 		case 4:
+			delete_duplicate_files()
+			break
+		case 5:
 			break
 		default:
 			fmt.Println("Choose a better option")
